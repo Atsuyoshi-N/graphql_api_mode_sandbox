@@ -2,6 +2,8 @@ language: ruby
 env:
   - RAILS_ENV=test
 before_script:
+  - "bundle update --bundler"
+  - "gem install bundler -v 2.0.1"
   - "mysql -e 'create database graphql_sandbox_test;'"
   - "cp ./.travis.database.yml ./config/database.yml"
 script:
