@@ -1,0 +1,15 @@
+language: ruby
+env:
+  - RAILS_ENV=test
+before_script:
+  - "mysql -e 'create database graphql_sandbox_test;'"
+  - "cp ./.travis.database.yml ./config/database.yml"
+script:
+  - bundle exec rails db:schema:load
+  - bundle exec rails db:test:prepare
+  - bundle exec rspec
+after_failure:
+  - "mysql -e 'show databases;'"
+  - "cat ./config/database.yml"
+  - "echo $RAILS_ENV"
+  - "bundle exec rails --version"
