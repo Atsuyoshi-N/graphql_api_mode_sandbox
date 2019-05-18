@@ -8,13 +8,21 @@ addons:
       - mysql-client
 env:
   - RAILS_ENV=test
-cache: bundler
+cache:
+  bundler: true
+  directories:
+    - node_modules
+  yarn: true
 before_install:
   - "gem install bundler -v 1.17.3"
   - "gem install bundler -v 2.0.1"
+install:
+  - nvm install node
+  - node -v
+  - npm i -g yarn
+  - yarn
 before_script:
   - "mysql -e 'create database graphql_sandbox_test;'"
-  - "bundle exec rails webpacker:compile"
 script:
   - bundle exec rails db:schema:load
   - bundle exec rails db:test:prepare
