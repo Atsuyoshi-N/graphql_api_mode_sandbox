@@ -5,7 +5,10 @@
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import * as PropTypes from 'prop-types'
-import { Props } from './Props';
+
+interface Props {
+  name?: string,
+}
 
 const Hello: React.FC<Props> = (props) => {
   return (
