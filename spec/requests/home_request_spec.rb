@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-describe "HomeController", type: :request do
-  describe "GET#index" do
-    before do 
+describe 'HomeController', type: :request do
+  describe 'GET#index' do
+    before do
       get root_url
     end
 
