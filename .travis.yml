@@ -3,7 +3,6 @@ env:
   - RAILS_ENV=test
 cache: bundler
 before_install:
-  - "bundle update --bundler"
   - "gem install bundler -v 1.17.3"
   - "gem install bundler -v 2.0.1"
 before_script:
