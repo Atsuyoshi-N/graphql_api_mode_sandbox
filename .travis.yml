@@ -1,4 +1,11 @@
 language: ruby
+addons:
+  apt:
+    sources:
+      - mysql-5.7-trusty
+    packages:
+      - mysql-server
+      - mysql-client
 env:
   - RAILS_ENV=test
 cache: bundler
@@ -7,7 +14,6 @@ before_install:
   - "gem install bundler -v 2.0.1"
 before_script:
   - "mysql -e 'create database graphql_sandbox_test;'"
-  - "cp ./.travis.database.yml ./config/database.yml"
 script:
   - bundle exec rails db:schema:load
   - bundle exec rails db:test:prepare
