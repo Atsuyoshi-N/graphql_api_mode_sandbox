@@ -58,22 +58,19 @@ export default class TaskList extends React.Component<Props, State> {
 
   render() {
     return (
-      <tr>
-        <td>
-          <ListItem key={this.props.id} role={undefined} dense button onClick={() => this.handleToggle(this.props.id)}>
-            <Checkbox
-              checked={this.state.checked.indexOf(this.props.id) !== -1}
-              tabIndex={-1}
-              disableRipple
-            />
-          </ListItem>
-        </td>
-        <td><ListItemText primary={this.props.title} /></td>
-        <td><ListItemText primary={this.props.body} /></td>
-        <td>
+      <ListItem key={this.props.id} role={undefined} dense button onClick={() => this.handleToggle(this.props.id)}>
+        <Checkbox
+          checked={this.state.checked.indexOf(this.props.id) !== -1}
+          tabIndex={-1}
+          disableRipple
+        />
+        <ListItemText primary={this.props.title} />
+        <ListItemText primary={this.props.body} />
+
+        <ListItemSecondaryAction>
           <a href="#" onClick={() => this.deleteTask(this.props.id)}>削除</a>
-        </td>
-      </tr>
+        </ListItemSecondaryAction>
+      </ListItem>
     );
   }
 }

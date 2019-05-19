@@ -41,9 +41,6 @@ class App extends React.Component<{}, State> {
     return (
       <div>
         <Header title="Todo App" />
-        <div>
-          <span>Hello typescript</span>;
-        </div>
         <Form getTasks={this.getTasks} />
         <TaskTable tasks={tasks} getTasks={this.getTasks} />
       </div>
