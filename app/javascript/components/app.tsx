@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Header from "./header"
 
 interface State {
   title?: string;
@@ -17,7 +18,10 @@ class App extends React.Component<{}> {
   render() {
     return (
       <div>
-        <span>Hello typescript</span>;
+        <Header title="Rails 5.2 + webpacker + React + Typescript + GraphQL" />
+        <div>
+          <span>Hello typescript</span>;
+        </div>
       </div>
     );
   }
