@@ -40,7 +40,7 @@ class App extends React.Component<{}, State> {
     const { tasks }: any = this.state;
     return (
       <div>
-        <Header title="Rails 5.2 + webpacker + React + Typescript + GraphQL" />
+        <Header title="Todo App" />
         <div>
           <span>Hello typescript</span>;
         </div>

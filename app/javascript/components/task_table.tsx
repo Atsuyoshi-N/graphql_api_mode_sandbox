@@ -2,6 +2,12 @@ import * as React from 'react';
 import axios from 'axios';
 import * as ReactDOM from 'react-dom';
 import TaskList from './task_list';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
 
 interface Props {
   tasks: any;
@@ -19,22 +25,25 @@ export default class TaskTable extends React.Component<Props, {}> {
       <table>
         <thead>
           <tr>
+            <th></th>
             <th>Title</th>
             <th>Body</th>
             <th></th>
           </tr>
         </thead>
         <tbody>
-          {tasks.map(function (task: any, index: number) {
-            return (
-              <TaskList
-                key={index}
-                id={task.id}
-                title={task.title}
-                body={task.body}
-                getTasks={getTasks}
-              />);
-          }.bind(this))}
+          <List>
+            {tasks.map(function (task: any, index: number) {
+              return (
+                <TaskList
+                  key={index}
+                  id={task.id}
+                  title={task.title}
+                  body={task.body}
+                  getTasks={getTasks}
+                />);
+            }.bind(this))}
+          </List>
         </tbody>
       </table>
     );
