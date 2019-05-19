@@ -12,10 +12,8 @@ interface Props {
   name?: string;
 }
 
-const Hello: React.FC<Props> = (props) => {
-  return (
-    <div>Hello {props.name}!</div>
-  );
+const Hello: React.FC<Props> = props => {
+  return <div>Hello {props.name}!</div>;
 };
 
 Hello.defaultProps = { name: 'Atsuyoshi-N' };
@@ -23,6 +21,6 @@ Hello.defaultProps = { name: 'Atsuyoshi-N' };
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
     <Hello />,
-    document.body.appendChild(document.createElement('div')),
+    document.body.appendChild(document.createElement('div'))
   );
 });
