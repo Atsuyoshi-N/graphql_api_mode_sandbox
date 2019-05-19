@@ -23,6 +23,12 @@ export default class Form extends React.Component<{}, State> {
     axios.post('http://localhost:3000/api/v1/tasks', data)
       .then(response => {
         console.log('body: ', response.data);
+        this.setState({
+          title: '',
+          body: ''
+        });
+      }).catch(error => {
+        console.log(error);
       })
     event.preventDefault();
   }
