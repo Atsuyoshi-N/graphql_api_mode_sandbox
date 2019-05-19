@@ -1,28 +1,31 @@
 import * as React from 'react';
 import axios from 'axios';
 
+interface Props {
+  getTasks: any;
+}
+
 interface State {
   title: string;
   body: string;
 }
 
-export default class Form extends React.Component<{}, State> {
+export default class Form extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
 
     this.state = {
       title: '',
-      body: ''
+      body: '',
     }
     this.createTask = this.createTask.bind(this);
   };
 
   createTask(event) {
-    console.log("clicked");
-    const data: any = JSON.stringify({ title: this.state.title, body: this.state.body });
+    const data: any = { "title": this.state.title, "body": this.state.body };
     axios.post('http://localhost:3000/api/v1/tasks', data)
       .then(response => {
-        console.log('body: ', response.data);
+        this.props.getTasks();
         this.setState({
           title: '',
           body: ''

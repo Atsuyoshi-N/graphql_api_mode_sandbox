@@ -2,23 +2,23 @@ class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: [:show, :update, :destory]
   
   def index
-    render :json, Task.all.latest_ordered
+    render json: Task.all.latest_ordered
   end
 
   def create
     @task = Task.new(task_params)
     if @task.save
-      render :json, @task
+      render json: @task
     end
   end
 
   def show
-    render :json, @task
+    render json: @task
   end
 
   def update
     @task.update(task_params)
-    render :json, @task
+    render json: @task
   end
 
   def destory
