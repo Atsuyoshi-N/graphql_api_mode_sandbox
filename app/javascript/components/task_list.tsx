@@ -13,6 +13,18 @@ interface Props {
 export default class TaskList extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
+    this.deleteTask = this.deleteTask.bind(this);
+  }
+
+  deleteTask(id) {
+    axios.delete(`http://localhost:3000/api/v1/tasks/${this.props.id}`)
+      .then(response => {
+        console.log(response);
+        this.props.getTasks();
+      })
+      .catch(error => {
+        console.log(error);
+      })
   }
 
   render() {
@@ -21,7 +33,7 @@ export default class TaskList extends React.Component<Props, {}> {
         <td>{this.props.title}</td>
         <td>{this.props.body}</td>
         <td>
-          <a href="#"></a>
+          <a href="#" onClick={() => this.deleteTask(this.props.id)}>削除</a>
         </td>
       </tr>
     );

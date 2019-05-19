@@ -1,5 +1,5 @@
 class Api::V1::TasksController < ApplicationController
-  before_action :set_task, only: [:show, :update, :destory]
+  before_action :set_task, only: [:show, :update, :destroy]
   
   def index
     render json: Task.all.latest_ordered
@@ -21,7 +21,7 @@ class Api::V1::TasksController < ApplicationController
     render json: @task
   end
 
-  def destory
+  def destroy
     @task.destroy
     head :no_content
   end
