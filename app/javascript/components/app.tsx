@@ -1,5 +1,6 @@
 import * as React from 'react';
-import Header from "./header"
+import Header from "./header";
+import Form from "./form";
 
 interface State {
   title?: string;
@@ -22,6 +23,7 @@ class App extends React.Component<{}> {
         <div>
           <span>Hello typescript</span>;
         </div>
+        <Form />
       </div>
     );
   }

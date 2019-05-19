@@ -18,7 +18,7 @@ class Api::V1::TasksController < ApplicationController
 
   def update
     @task.update(task_params)
-    render :json @task
+    render :json, @task
   end
 
   def destory
