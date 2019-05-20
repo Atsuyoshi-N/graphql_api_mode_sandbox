@@ -17,9 +17,8 @@ interface Props {
 
 const styles: any = theme => ({
   root: {
-    width: '100%',
-    maxWidth: 720,
-  },
+    width: '80%'
+  }
 });
 
 class TaskTable extends React.Component<Props, {}> {
@@ -32,18 +31,21 @@ class TaskTable extends React.Component<Props, {}> {
     const { classes }: any = this.props;
     return (
       <List className={classes.root}>
-        {tasks.map(function (task: any, index: number) {
-          return (
-            <TaskList
-              key={index}
-              id={task.id}
-              title={task.title}
-              body={task.body}
-              getTasks={getTasks}
-            />);
-        }.bind(this))}
+        {tasks.map(
+          function(task: any, index: number) {
+            return (
+              <TaskList
+                key={index}
+                id={task.id}
+                title={task.title}
+                body={task.body}
+                getTasks={getTasks}
+              />
+            );
+          }.bind(this)
+        )}
       </List>
     );
-  };
+  }
 }
 export default withStyles(styles)(TaskTable);

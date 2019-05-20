@@ -1,5 +1,5 @@
-import * as React from 'react'
-import axios from 'axios'
+import * as React from 'react';
+import axios from 'axios';
 import { render } from 'react-dom';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -24,21 +24,22 @@ export default class TaskList extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
-      checked: [0],
+      checked: [0]
     };
     this.deleteTask = this.deleteTask.bind(this);
     this.handleToggle = this.handleToggle.bind(this);
   }
 
   deleteTask(id) {
-    axios.delete(`http://localhost:3000/api/v1/tasks/${this.props.id}`)
+    axios
+      .delete(`http://localhost:3000/api/v1/tasks/${this.props.id}`)
       .then(response => {
         console.log(response);
         this.props.getTasks();
       })
       .catch(error => {
         console.log(error);
-      })
+      });
   }
 
   handleToggle(value) {
@@ -52,13 +53,19 @@ export default class TaskList extends React.Component<Props, State> {
       newChecked.splice(currentIdx, 1);
     }
     this.setState({
-      checked: newChecked,
+      checked: newChecked
     });
   }
 
   render() {
     return (
-      <ListItem key={this.props.id} role={undefined} dense button onClick={() => this.handleToggle(this.props.id)}>
+      <ListItem
+        key={this.props.id}
+        role={undefined}
+        dense
+        button
+        onClick={() => this.handleToggle(this.props.id)}
+      >
         <Checkbox
           checked={this.state.checked.indexOf(this.props.id) !== -1}
           tabIndex={-1}
@@ -68,7 +75,9 @@ export default class TaskList extends React.Component<Props, State> {
         <ListItemText primary={this.props.body} />
 
         <ListItemSecondaryAction>
-          <a href="#" onClick={() => this.deleteTask(this.props.id)}>削除</a>
+          <a href="#" onClick={() => this.deleteTask(this.props.id)}>
+            削除
+          </a>
         </ListItemSecondaryAction>
       </ListItem>
     );

@@ -20,23 +20,23 @@ interface State {
 }
 const styles: any = {
   root: {
-    padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
-    width: 720,
+    width: '80%',
+    height: '50px'
   },
   input: {
     marginLeft: 8,
-    flex: 1,
+    flex: 1
   },
   iconButton: {
-    padding: 10,
+    padding: 10
   },
   divider: {
     width: 1,
     height: 28,
-    margin: 4,
-  },
+    margin: 4
+  }
 };
 
 class Form extends React.Component<Props, State> {
@@ -45,11 +45,11 @@ class Form extends React.Component<Props, State> {
 
     this.state = {
       title: '',
-      body: '',
-    }
+      body: ''
+    };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createTask = this.createTask.bind(this);
-  };
+  }
 
   handleSubmit(e) {
     if (e.keycode === 13) {
@@ -58,17 +58,19 @@ class Form extends React.Component<Props, State> {
   }
 
   createTask(event) {
-    const data: any = { "title": this.state.title, "body": this.state.body };
-    axios.post('http://localhost:3000/api/v1/tasks', data)
+    const data: any = { title: this.state.title, body: this.state.body };
+    axios
+      .post('http://localhost:3000/api/v1/tasks', data)
       .then(response => {
         this.props.getTasks();
         this.setState({
           title: '',
           body: ''
         });
-      }).catch(error => {
-        console.log(error);
       })
+      .catch(error => {
+        console.log(error);
+      });
     event.preventDefault();
   }
 
@@ -76,8 +78,8 @@ class Form extends React.Component<Props, State> {
     let { title, body } = this.state;
     const { classes }: any = this.props;
     return (
-      <form onSubmit={this.createTask} noValidate autoComplete="off">
-        <Paper className={classes.root}>
+      <Paper className={classes.root}>
+        <form onSubmit={this.createTask} noValidate autoComplete="on">
           <IconButton className={classes.iconButton} aria-label="Add">
             <AddIcon />
           </IconButton>
@@ -86,13 +88,18 @@ class Form extends React.Component<Props, State> {
             value={title}
             className={classes.input}
             placeholder="Title"
-            onChange={(e) => { this.setState({ title: e.target.value }) }}
-            onKeyDown={(e) => { this.handleSubmit }}
+            autoComplete="on"
+            onChange={e => {
+              this.setState({ title: e.target.value });
+            }}
+            onKeyDown={e => {
+              this.handleSubmit;
+            }}
           />
-        </Paper>
-      </form>
-    )
+        </form>
+      </Paper>
+    );
   }
 }
 
-export default withStyles(styles)(Form); 
+export default withStyles(styles)(Form);
