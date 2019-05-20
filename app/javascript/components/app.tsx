@@ -49,7 +49,6 @@ class App extends React.Component<{}, State> {
 
   render() {
     const { tasks }: any = this.state;
-    const { classes }: any = this.props;
     return (
       <Grid container justify="center" className={classes.root}>
         <Header title="Todo App" />
@@ -60,4 +59,4 @@ class App extends React.Component<{}, State> {
   }
 }
 
-export default withStyles(styles)(App);
+export default App;

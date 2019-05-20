@@ -1,12 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
 import { render } from 'react-dom';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
-import ListItemText from '@material-ui/core/ListItemText';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 
 interface Props {
   key: number;
@@ -16,18 +10,13 @@ interface Props {
   getTasks: any;
 }
 
-interface State {
-  checked: any;
-}
-
-export default class TaskList extends React.Component<Props, State> {
+export default class TaskList extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
     this.state = {
       checked: [0]
     };
     this.deleteTask = this.deleteTask.bind(this);
-    this.handleToggle = this.handleToggle.bind(this);
   }
 
   deleteTask(id) {
