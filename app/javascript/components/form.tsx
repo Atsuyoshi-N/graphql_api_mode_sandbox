@@ -1,5 +1,7 @@
 import * as React from 'react';
 import axios from 'axios';
+import { Paper, IconButton, InputBase, withStyles } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 
 interface Props {
   getTasks: any;
@@ -30,7 +32,7 @@ const styles: any = {
   }
 };
 
-export default class Form extends React.Component<Props, State> {
+class Form extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
 
@@ -40,6 +42,12 @@ export default class Form extends React.Component<Props, State> {
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.createTask = this.createTask.bind(this);
+  }
+
+  handleSubmit(e) {
+    if (e.keycode === 13) {
+      this.createTask(e);
+    }
   }
 
   createTask(event) {
@@ -61,6 +69,7 @@ export default class Form extends React.Component<Props, State> {
 
   render() {
     let { title, body } = this.state;
+    const { classes }: any = this.props;
     return (
       <Paper className={classes.root}>
         <form onSubmit={this.createTask} noValidate autoComplete="on">

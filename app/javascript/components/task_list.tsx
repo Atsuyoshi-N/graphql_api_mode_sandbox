@@ -1,6 +1,12 @@
 import * as React from 'react';
 import axios from 'axios';
 import { render } from 'react-dom';
+import {
+  ListItem,
+  Checkbox,
+  ListItemText,
+  ListItemSecondaryAction
+} from '@material-ui/core';
 
 interface Props {
   key: number;
@@ -10,7 +16,11 @@ interface Props {
   getTasks: any;
 }
 
-export default class TaskList extends React.Component<Props, {}> {
+interface State {
+  checked: any;
+}
+
+export default class TaskList extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {

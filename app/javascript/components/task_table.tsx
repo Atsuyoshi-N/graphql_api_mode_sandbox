@@ -2,6 +2,7 @@ import * as React from 'react';
 import axios from 'axios';
 import * as ReactDOM from 'react-dom';
 import TaskList from './task_list';
+import { List, withStyles } from '@material-ui/core';
 
 interface Props {
   tasks: any;
@@ -20,6 +21,7 @@ class TaskTable extends React.Component<Props, {}> {
 
   render() {
     const { tasks, getTasks }: any = this.props;
+    const { classes }: any = this.props;
     return (
       <List className={classes.root}>
         {tasks.map(
