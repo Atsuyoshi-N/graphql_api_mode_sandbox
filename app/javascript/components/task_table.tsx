@@ -2,30 +2,30 @@ import * as React from 'react';
 import axios from 'axios';
 import * as ReactDOM from 'react-dom';
 import TaskList from './task_list';
+import { List, withStyles } from '@material-ui/core';
 
 interface Props {
   tasks: any;
   getTasks: any;
 }
+const styles: any = theme => ({
+  root: {
+    width: '80%'
+  }
+});
 
-export default class TaskTable extends React.Component<Props, {}> {
+class TaskTable extends React.Component<Props, {}> {
   constructor(props: any) {
     super(props);
   }
 
   render() {
     const { tasks, getTasks }: any = this.props;
+    const { classes }: any = this.props;
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Title</th>
-            <th>Body</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {tasks.map(function (task: any, index: number) {
+      <List className={classes.root}>
+        {tasks.map(
+          function(task: any, index: number) {
             return (
               <TaskList
                 key={index}
@@ -33,10 +33,12 @@ export default class TaskTable extends React.Component<Props, {}> {
                 title={task.title}
                 body={task.body}
                 getTasks={getTasks}
-              />);
-          }.bind(this))}
-        </tbody>
-      </table>
+              />
+            );
+          }.bind(this)
+        )}
+      </List>
     );
-  };
+  }
 }
+export default withStyles(styles)(TaskTable);

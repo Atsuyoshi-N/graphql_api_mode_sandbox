@@ -1,14 +1,23 @@
 import * as React from 'react';
-import Header from "./header";
-import Form from "./form";
+import { withStyles } from '@material-ui/core/styles';
+import Header from './header';
+import Form from './form';
 import TaskTable from './task_table';
 import axios from 'axios';
+import { Grid } from '@material-ui/core';
+import { List } from '@material-ui/core';
 
 interface State {
   title: string;
   body: string;
   tasks: any;
 }
+
+const styles: any = theme => ({
+  root: {
+    width: '100%'
+  }
+});
 
 class App extends React.Component<{}, State> {
   constructor(props: any) {
@@ -26,29 +35,29 @@ class App extends React.Component<{}, State> {
   }
 
   getTasks() {
-    axios.get('http://localhost:3000/api/v1/tasks')
+    axios
+      .get('http://localhost:3000/api/v1/tasks')
       .then(response => {
         console.log(response.status);
         console.log(response.data);
-        this.setState({ tasks: response.data })
-      }).catch(error => {
-        console.log(error);
+        this.setState({ tasks: response.data });
       })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
     const { tasks }: any = this.state;
+    const { classes }: any = this.props;
     return (
-      <div>
-        <Header title="Rails 5.2 + webpacker + React + Typescript + GraphQL" />
-        <div>
-          <span>Hello typescript</span>;
-        </div>
+      <Grid container justify="center" className={classes.root}>
+        <Header title="Todo App" />
         <Form getTasks={this.getTasks} />
         <TaskTable tasks={tasks} getTasks={this.getTasks} />
-      </div>
+      </Grid>
     );
   }
 }
 
-export default App;
+export default withStyles(styles)(App);

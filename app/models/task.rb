@@ -3,5 +3,4 @@ class Task < ApplicationRecord
   scope :oldest_ordered, -> { order(created_at: :asc) }
 
   validates :title, presence: true
-  validates :body, presence: true
 end
