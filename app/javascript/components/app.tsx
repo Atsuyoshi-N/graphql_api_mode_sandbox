@@ -7,6 +7,7 @@ import TaskListSidebar from './sidebar';
 import axios from 'axios';
 import { Grid } from '@material-ui/core';
 import { List } from '@material-ui/core';
+import MainContents from './main_contents';
 
 interface State {
   title: string;
@@ -15,9 +16,7 @@ interface State {
 }
 
 const styles: any = theme => ({
-  root: {
-    width: '100%'
-  }
+  root: {}
 });
 
 class App extends React.Component<{}, State> {
@@ -52,18 +51,16 @@ class App extends React.Component<{}, State> {
     const { tasks }: any = this.state;
     const { classes }: any = this.props;
     return (
-      <Grid container>
+      <Grid container className={classes.root}>
         <Grid item xs={3}>
           <Header title="" />
-          <TaskListSidebar />
         </Grid>
         <Grid item xs={9}>
-          <Grid container justify="center" className={classes.root}>
+          <Grid container justify="center">
             <Header title="Todo App" />
-            <Form getTasks={this.getTasks} />
-            <TaskTable tasks={tasks} getTasks={this.getTasks} />
           </Grid>
         </Grid>
+        <MainContents tasks={tasks} getTasks={this.getTasks} />
       </Grid>
     );
   }

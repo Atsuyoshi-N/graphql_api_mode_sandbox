@@ -17,7 +17,8 @@ import ListIcon from '@material-ui/icons/FormatListBulleted';
 const styles = theme => ({
   root: {
     width: '100%',
-    backgroundColor: theme.palette.background.paper
+    height: '100%',
+    backgroundColor: 'whitesmoke'
   }
 });
 
@@ -34,7 +35,7 @@ class TaskListSidebar extends React.Component<{}, {}> {
           <IconButton aria-label="inbox">
             <InboxIcon />
           </IconButton>
-          <ListItemText primary="受信箱" />
+          <ListItemText primary="All Tasks" />
         </ListItem>
         <ListItem key="star" role={undefined} dense button>
           <IconButton aria-label="star">
