@@ -15,7 +15,8 @@ interface Props {
 
 const styles: any = theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    minWidth: '180px'
   },
   appBar: {
     backgroundColor: '#668963' // #799575

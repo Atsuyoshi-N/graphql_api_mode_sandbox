@@ -24,8 +24,12 @@ interface Props {
 const styles = theme => ({
   root: {
     width: '100%',
+    minWidth: '180px',
     height: '100%',
     backgroundColor: 'whitesmoke'
+  },
+  link: {
+    textDecoration: 'none'
   }
 });
 
@@ -41,7 +45,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
     return (
       <List className={classes.root}>
         <BrowserRouter>
-          <Link to="/">
+          <Link to="/" className={classes.link}>
             <ListItem key="inbox" role={undefined} dense button>
               <IconButton aria-label="inbox">
                 <InboxIcon />
@@ -49,7 +53,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
               <ListItemText primary="All Tasks" />
             </ListItem>
           </Link>
-          <Link to="/star">
+          <Link to="/star" className={classes.link}>
             <ListItem key="star" role={undefined} dense button>
               <IconButton aria-label="star">
                 <StarIcon />
@@ -57,7 +61,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
               <ListItemText primary="星つき" />
             </ListItem>
           </Link>
-          <Link to="today">
+          <Link to="today" className={classes.link}>
             <ListItem key="today" role={undefined} dense button>
               <IconButton aria-label="today">
                 <TodayIcon />
@@ -65,7 +69,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
               <ListItemText primary="今日" />
             </ListItem>
           </Link>
-          <Link to="/week">
+          <Link to="/week" className={classes.link}>
             <ListItem key="thisweek" role={undefined} dense button>
               <IconButton aria-label="week">
                 <WeekIcon />

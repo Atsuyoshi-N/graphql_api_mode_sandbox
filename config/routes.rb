@@ -10,4 +10,6 @@ Rails.application.routes.draw do
       resources :tasks
     end
   end
+
+  get ':any_action', to: 'home#index'
 end
