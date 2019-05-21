@@ -15,7 +15,7 @@ const styles: any = {
   root: {
     display: 'flex',
     alignItems: 'center',
-    width: '80%',
+    width: '100%',
     height: '50px'
   },
   input: {

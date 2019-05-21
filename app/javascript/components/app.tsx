@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './header';
 import Form from './form';
 import TaskTable from './task_table';
+import TaskListSidebar from './sidebar';
 import axios from 'axios';
 import { Grid } from '@material-ui/core';
 import { List } from '@material-ui/core';
@@ -51,10 +52,18 @@ class App extends React.Component<{}, State> {
     const { tasks }: any = this.state;
     const { classes }: any = this.props;
     return (
-      <Grid container justify="center" className={classes.root}>
-        <Header title="Todo App" />
-        <Form getTasks={this.getTasks} />
-        <TaskTable tasks={tasks} getTasks={this.getTasks} />
+      <Grid container>
+        <Grid item xs={3}>
+          <Header title="" />
+          <TaskListSidebar />
+        </Grid>
+        <Grid item xs={9}>
+          <Grid container justify="center" className={classes.root}>
+            <Header title="Todo App" />
+            <Form getTasks={this.getTasks} />
+            <TaskTable tasks={tasks} getTasks={this.getTasks} />
+          </Grid>
+        </Grid>
       </Grid>
     );
   }

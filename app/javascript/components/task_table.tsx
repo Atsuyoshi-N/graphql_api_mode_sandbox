@@ -10,7 +10,7 @@ interface Props {
 }
 const styles: any = theme => ({
   root: {
-    width: '80%'
+    width: '100%'
   }
 });
 

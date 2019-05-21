@@ -15,7 +15,10 @@ interface Props {
 
 const styles: any = theme => ({
   root: {
-    width: '80%'
+    width: '100%'
+  },
+  appBar: {
+    backgroundColor: '#668963' // #799575
   },
   grow: {
     flexGrow: 1
@@ -82,7 +85,7 @@ class Header extends React.Component<Props> {
     const { classes }: any = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <IconButton
               className={classes.menuButton}
@@ -105,7 +108,6 @@ class Header extends React.Component<Props> {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
