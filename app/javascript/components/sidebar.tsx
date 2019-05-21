@@ -1,5 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import TaskTable from './task_table';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   List,
@@ -14,6 +16,11 @@ import TodayIcon from '@material-ui/icons/Today';
 import WeekIcon from '@material-ui/icons/ViewWeek';
 import ListIcon from '@material-ui/icons/FormatListBulleted';
 
+interface Props {
+  tasks: object;
+  getTasks: any;
+}
+
 const styles = theme => ({
   root: {
     width: '100%',
@@ -22,39 +29,55 @@ const styles = theme => ({
   }
 });
 
-class TaskListSidebar extends React.Component<{}, {}> {
+class TaskListSidebar extends React.Component<Props, {}> {
   constructor(props) {
     super(props);
   }
 
   render() {
     const { classes }: any = this.props;
+    console.log(this.props);
+    console.log(this.props.tasks);
     return (
       <List className={classes.root}>
-        <ListItem key="inbox" role={undefined} dense button>
-          <IconButton aria-label="inbox">
-            <InboxIcon />
-          </IconButton>
-          <ListItemText primary="All Tasks" />
-        </ListItem>
-        <ListItem key="star" role={undefined} dense button>
-          <IconButton aria-label="star">
-            <StarIcon />
-          </IconButton>
-          <ListItemText primary="星つき" />
-        </ListItem>
-        <ListItem key="today" role={undefined} dense button>
-          <IconButton aria-label="today">
-            <TodayIcon />
-          </IconButton>
-          <ListItemText primary="今日" />
-        </ListItem>
-        <ListItem key="thisweek" role={undefined} dense button>
-          <IconButton aria-label="week">
-            <WeekIcon />
-          </IconButton>
-          <ListItemText primary="週" />
-        </ListItem>
+        <BrowserRouter>
+          <Link to="/">
+            <ListItem key="inbox" role={undefined} dense button>
+              <IconButton aria-label="inbox">
+                <InboxIcon />
+              </IconButton>
+              <ListItemText primary="All Tasks" />
+            </ListItem>
+          </Link>
+          <Link to="/star">
+            <ListItem key="star" role={undefined} dense button>
+              <IconButton aria-label="star">
+                <StarIcon />
+              </IconButton>
+              <ListItemText primary="星つき" />
+            </ListItem>
+          </Link>
+          <Link to="today">
+            <ListItem key="today" role={undefined} dense button>
+              <IconButton aria-label="today">
+                <TodayIcon />
+              </IconButton>
+              <ListItemText primary="今日" />
+            </ListItem>
+          </Link>
+          <Link to="/week">
+            <ListItem key="thisweek" role={undefined} dense button>
+              <IconButton aria-label="week">
+                <WeekIcon />
+              </IconButton>
+              <ListItemText primary="週" />
+            </ListItem>
+          </Link>
+          <Route exact path="/" />
+          <Route path="/star" />
+          <Route path="/today" />
+          <Route path="/week" />
+        </BrowserRouter>
         {[0, 1, 2, 3].map(value => (
           <ListItem key={value} role={undefined} dense button>
             <IconButton aria-label="lists">

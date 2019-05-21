@@ -42,10 +42,11 @@ class MainContents extends React.Component<{}, State> {
 
   render() {
     const { tasks } = this.state;
+    console.log(tasks);
     return (
       <Grid container>
         <Grid item xs={3}>
-          <TaskListSidebar />
+          <TaskListSidebar tasks={tasks} getTasks={this.getTasks} />
         </Grid>
         <Grid item xs={9}>
           <Form getTasks={this.getTasks} />

@@ -5,7 +5,7 @@ import TaskList from './task_list';
 import { List, withStyles } from '@material-ui/core';
 
 interface Props {
-  tasks: any;
+  tasks: object;
   getTasks: any;
 }
 const styles: any = theme => ({
@@ -15,13 +15,15 @@ const styles: any = theme => ({
 });
 
 class TaskTable extends React.Component<Props, {}> {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
   }
 
   render() {
     const { tasks, getTasks }: any = this.props;
     const { classes }: any = this.props;
+    console.log(this.props);
+    console.log(tasks);
     return (
       <List className={classes.root}>
         {tasks.map(
