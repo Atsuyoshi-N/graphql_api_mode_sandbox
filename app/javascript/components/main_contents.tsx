@@ -1,10 +1,12 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import axios from 'axios';
-import { Grid } from '@material-ui/core';
+import { Grid, withStyles } from '@material-ui/core';
 import TaskListSidebar from './sidebar';
 import Form from './form';
 import TaskTable from './task_table';
+
+interface Props {}
 
 interface State {
   title: string;
@@ -12,7 +14,13 @@ interface State {
   tasks: object;
 }
 
-class MainContents extends React.Component<{}, State> {
+const styles = theme => ({
+  mainContent: {
+    height: 'calc(100vh - 64px)'
+  }
+});
+
+class MainContents extends React.Component<Props, State> {
   constructor(props) {
     super(props);
     this.state = {
@@ -42,9 +50,9 @@ class MainContents extends React.Component<{}, State> {
 
   render() {
     const { tasks } = this.state;
-    console.log(tasks);
+    const { classes }: any = this.props;
     return (
-      <Grid container>
+      <Grid container className={classes.mainContent}>
         <Grid item xs={3}>
           <TaskListSidebar tasks={tasks} getTasks={this.getTasks} />
         </Grid>
@@ -57,4 +65,4 @@ class MainContents extends React.Component<{}, State> {
   }
 }
 
-export default MainContents;
+export default withStyles(styles)(MainContents);

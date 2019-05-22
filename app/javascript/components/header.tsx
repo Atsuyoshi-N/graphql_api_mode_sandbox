@@ -19,7 +19,8 @@ const styles: any = theme => ({
     minWidth: '180px'
   },
   appBar: {
-    backgroundColor: '#668963' // #799575
+    backgroundColor: 'transparent'
+    //backgroundColor: '#668963' // #799575
   },
   grow: {
     flexGrow: 1

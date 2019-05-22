@@ -8,9 +8,12 @@ interface Props {
   tasks: object;
   getTasks: any;
 }
+
 const styles: any = theme => ({
   root: {
-    width: '100%'
+    width: '100%',
+    height: 'calc(100vh - 64px - 50px)',
+    overflow: 'scroll'
   }
 });
 
@@ -23,7 +26,6 @@ class TaskTable extends React.Component<Props, {}> {
     const { tasks, getTasks }: any = this.props;
     const { classes }: any = this.props;
     console.log(this.props);
-    console.log(tasks);
     return (
       <List className={classes.root}>
         {tasks.map(

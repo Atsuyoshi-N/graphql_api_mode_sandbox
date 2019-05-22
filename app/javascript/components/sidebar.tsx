@@ -24,9 +24,10 @@ interface Props {
 const styles = theme => ({
   root: {
     width: '100%',
+    height: 'calc(100vh - 64px)',
     minWidth: '180px',
-    height: '100%',
-    backgroundColor: 'whitesmoke'
+    backgroundColor: 'whitesmoke',
+    overflow: 'scroll'
   },
   link: {
     textDecoration: 'none'
@@ -40,8 +41,6 @@ class TaskListSidebar extends React.Component<Props, {}> {
 
   render() {
     const { classes }: any = this.props;
-    console.log(this.props);
-    console.log(this.props.tasks);
     return (
       <List className={classes.root}>
         <BrowserRouter>
@@ -82,7 +81,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
           <Route path="/today" />
           <Route path="/week" />
         </BrowserRouter>
-        {[0, 1, 2, 3].map(value => (
+        {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
           <ListItem key={value} role={undefined} dense button>
             <IconButton aria-label="lists">
               <ListIcon />

@@ -3,9 +3,13 @@ import { withStyles } from '@material-ui/core/styles';
 import Header from './header';
 import { Grid } from '@material-ui/core';
 import MainContents from './main_contents';
+import BaseImage from '../images/wunderlist.jpg';
 
 const styles: any = theme => ({
-  root: {}
+  root: {
+    backgroundImage: `url(${BaseImage})`,
+    backgroundSize: '100% 100%'
+  }
 });
 
 class App extends React.Component<{}, {}> {
