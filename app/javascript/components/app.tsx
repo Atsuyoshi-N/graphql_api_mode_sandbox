@@ -1,60 +1,36 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Header from './header';
-import Form from './form';
-import TaskTable from './task_table';
-import axios from 'axios';
+import LeftHeader from './left_header';
 import { Grid } from '@material-ui/core';
-import { List } from '@material-ui/core';
-
-interface State {
-  title: string;
-  body: string;
-  tasks: any;
-}
+import MainContents from './main_contents';
+import BaseImage from '../images/wunderlist.jpg';
 
 const styles: any = theme => ({
   root: {
-    width: '100%'
+    backgroundImage: `url(${BaseImage})`,
+    backgroundSize: '100% 100%'
   }
 });
 
-class App extends React.Component<{}, State> {
+class App extends React.Component<{}, {}> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      title: '',
-      body: '',
-      tasks: []
-    };
-    this.getTasks = this.getTasks.bind(this);
-  }
-
-  componentDidMount() {
-    this.getTasks();
-  }
-
-  getTasks() {
-    axios
-      .get('http://localhost:3000/api/v1/tasks')
-      .then(response => {
-        console.log(response.status);
-        console.log(response.data);
-        this.setState({ tasks: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
   }
 
   render() {
-    const { tasks }: any = this.state;
     const { classes }: any = this.props;
     return (
-      <Grid container justify="center" className={classes.root}>
-        <Header title="Todo App" />
-        <Form getTasks={this.getTasks} />
-        <TaskTable tasks={tasks} getTasks={this.getTasks} />
+      <Grid container className={classes.root}>
+        <Grid item xs={3}>
+          <LeftHeader />
+        </Grid>
+        <Grid item xs={9}>
+          <Grid container justify="center">
+            <Header title="All tasks" />
+          </Grid>
+        </Grid>
+        <MainContents />
       </Grid>
     );
   }

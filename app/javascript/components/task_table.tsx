@@ -5,23 +5,36 @@ import TaskList from './task_list';
 import { List, withStyles } from '@material-ui/core';
 
 interface Props {
-  tasks: any;
+  tasks: object;
+  relativePath: string;
   getTasks: any;
+  setRelativePath: any;
 }
+
+interface State {
+  gottenTasks: object;
+}
+
 const styles: any = theme => ({
   root: {
-    width: '80%'
+    width: '100%',
+    height: 'calc(100vh - 64px - 50px - 28px)',
+    overflow: 'scroll'
   }
 });
 
-class TaskTable extends React.Component<Props, {}> {
-  constructor(props: any) {
+class TaskTable extends React.Component<Props, State> {
+  constructor(props) {
     super(props);
+    this.state = {
+      gottenTasks: []
+    };
   }
 
   render() {
     const { tasks, getTasks }: any = this.props;
     const { classes }: any = this.props;
+    console.log(`relativePath is: ${this.props.relativePath}`);
     return (
       <List className={classes.root}>
         {tasks.map(

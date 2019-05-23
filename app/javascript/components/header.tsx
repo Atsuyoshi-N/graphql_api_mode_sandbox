@@ -15,7 +15,11 @@ interface Props {
 
 const styles: any = theme => ({
   root: {
-    width: '80%'
+    width: '100%',
+    minWidth: '180px'
+  },
+  appBar: {
+    backgroundColor: '#668963'
   },
   grow: {
     flexGrow: 1
@@ -82,15 +86,8 @@ class Header extends React.Component<Props> {
     const { classes }: any = this.props;
     return (
       <div className={classes.root}>
-        <AppBar position="static">
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography
               className={classes.title}
               variant="h6"
@@ -105,7 +102,6 @@ class Header extends React.Component<Props> {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput
