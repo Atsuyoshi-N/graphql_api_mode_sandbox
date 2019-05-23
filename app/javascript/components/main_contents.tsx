@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import axios from 'axios';
 import { Grid, withStyles } from '@material-ui/core';
 import TaskListSidebar from './sidebar';
+import NewTasklistPlusButton from './new_tasklist_plus_button';
 import Form from './form';
 import TaskTable from './task_table';
 
@@ -17,6 +18,9 @@ interface State {
 const styles = theme => ({
   mainContent: {
     height: 'calc(100vh - 64px)'
+  },
+  rightContents: {
+    padding: '0 14px'
   }
 });
 
@@ -55,8 +59,9 @@ class MainContents extends React.Component<Props, State> {
       <Grid container className={classes.mainContent}>
         <Grid item xs={3}>
           <TaskListSidebar tasks={tasks} getTasks={this.getTasks} />
+          <NewTasklistPlusButton />
         </Grid>
-        <Grid item xs={9}>
+        <Grid item xs={9} className={classes.rightContents}>
           <Form getTasks={this.getTasks} />
           <TaskTable tasks={tasks} getTasks={this.getTasks} />
         </Grid>

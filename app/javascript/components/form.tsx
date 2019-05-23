@@ -16,14 +16,18 @@ const styles: any = {
     display: 'flex',
     alignItems: 'center',
     width: '100%',
-    height: '50px'
+    height: '50px',
+    backgroundColor: 'rgba(102, 137, 100, 0.75)',
+    margin: '14px 0'
   },
   input: {
     marginLeft: 8,
-    flex: 1
+    flex: 1,
+    color: '#fff'
   },
   iconButton: {
-    padding: 10
+    padding: 10,
+    color: '#fff'
   },
   divider: {
     width: 1,

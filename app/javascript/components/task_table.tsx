@@ -12,7 +12,7 @@ interface Props {
 const styles: any = theme => ({
   root: {
     width: '100%',
-    height: 'calc(100vh - 64px - 50px)',
+    height: 'calc(100vh - 64px - 50px - 28px)',
     overflow: 'scroll'
   }
 });

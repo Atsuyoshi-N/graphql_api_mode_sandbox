@@ -24,7 +24,7 @@ interface Props {
 const styles = theme => ({
   root: {
     width: '100%',
-    height: 'calc(100vh - 64px)',
+    height: 'calc(100vh - 64px - 52px)',
     minWidth: '180px',
     backgroundColor: 'whitesmoke',
     overflow: 'scroll'
