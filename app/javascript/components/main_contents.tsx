@@ -12,6 +12,7 @@ interface Props {}
 interface State {
   title: string;
   body: string;
+  relativePath: string;
   tasks: object;
 }
 
@@ -30,26 +31,57 @@ class MainContents extends React.Component<Props, State> {
     this.state = {
       title: '',
       body: '',
+      relativePath: '/',
       tasks: []
     };
     this.getTasks = this.getTasks.bind(this);
+    this.setRelativePath = this.setRelativePath.bind(this);
+    this.endPointRelativePath = this.endPointRelativePath.bind(this);
   }
 
   componentDidMount() {
     this.getTasks();
   }
 
+  endPointRelativePath(relativePath: string) {
+    switch (relativePath) {
+      case '/':
+        return '/inboxes';
+        break;
+      case '/stars':
+        return '/stars';
+        break;
+      case '/today':
+        return '/today';
+        break;
+      case '/week':
+        return '/week';
+        break;
+      default:
+        return '/';
+        break;
+    }
+  }
+
   getTasks() {
+    const BASEURL = 'http://localhost:3000/api/v1/tasks';
+    const url = BASEURL + this.endPointRelativePath(this.state.relativePath);
     axios
-      .get('http://localhost:3000/api/v1/tasks')
+      .get(url)
       .then(response => {
-        console.log(response.status);
-        console.log(response.data);
+        //console.log(response.status);
+        //console.log(response.data);
         this.setState({ tasks: response.data });
       })
       .catch(error => {
         console.log(error);
       });
+  }
+
+  setRelativePath(value) {
+    this.setState({ relativePath: value }, () => {
+      this.getTasks();
+    });
   }
 
   render() {
@@ -58,12 +90,22 @@ class MainContents extends React.Component<Props, State> {
     return (
       <Grid container className={classes.mainContent}>
         <Grid item xs={3}>
-          <TaskListSidebar tasks={tasks} getTasks={this.getTasks} />
+          <TaskListSidebar
+            tasks={tasks}
+            getTasks={this.getTasks}
+            relativePath={this.state.relativePath}
+            setRelativePath={this.setRelativePath}
+          />
           <NewTasklistPlusButton />
         </Grid>
         <Grid item xs={9} className={classes.rightContents}>
           <Form getTasks={this.getTasks} />
-          <TaskTable tasks={tasks} getTasks={this.getTasks} />
+          <TaskTable
+            tasks={tasks}
+            getTasks={this.getTasks}
+            relativePath={this.state.relativePath}
+            setRelativePath={this.setRelativePath}
+          />
         </Grid>
       </Grid>
     );

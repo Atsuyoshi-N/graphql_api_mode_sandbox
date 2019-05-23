@@ -6,7 +6,13 @@ import { List, withStyles } from '@material-ui/core';
 
 interface Props {
   tasks: object;
+  relativePath: string;
   getTasks: any;
+  setRelativePath: any;
+}
+
+interface State {
+  gottenTasks: object;
 }
 
 const styles: any = theme => ({
@@ -17,15 +23,18 @@ const styles: any = theme => ({
   }
 });
 
-class TaskTable extends React.Component<Props, {}> {
+class TaskTable extends React.Component<Props, State> {
   constructor(props) {
     super(props);
+    this.state = {
+      gottenTasks: []
+    };
   }
 
   render() {
     const { tasks, getTasks }: any = this.props;
     const { classes }: any = this.props;
-    console.log(this.props);
+    console.log(`relativePath is: ${this.props.relativePath}`);
     return (
       <List className={classes.root}>
         {tasks.map(

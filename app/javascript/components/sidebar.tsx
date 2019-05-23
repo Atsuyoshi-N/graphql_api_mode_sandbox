@@ -19,7 +19,9 @@ import ListIcon from '@material-ui/icons/FormatListBulleted';
 
 interface Props {
   tasks: object;
+  relativePath: string;
   getTasks: any;
+  setRelativePath: any;
 }
 
 const styles = theme => ({
@@ -51,7 +53,13 @@ class TaskListSidebar extends React.Component<Props, {}> {
     return (
       <List className={classes.root}>
         <BrowserRouter>
-          <Link to="/" className={classes.link}>
+          <Link
+            to="/"
+            className={classes.link}
+            onClick={() => {
+              this.props.setRelativePath('/');
+            }}
+          >
             <MenuItem button selected className={classes.menu}>
               <ListItem key="inbox" role={undefined} dense button>
                 <IconButton aria-label="inbox">
@@ -64,7 +72,11 @@ class TaskListSidebar extends React.Component<Props, {}> {
               </ListItem>
             </MenuItem>
           </Link>
-          <Link to="/star" className={classes.link}>
+          <Link
+            to="/star"
+            className={classes.link}
+            onClick={() => this.props.setRelativePath('/stars')}
+          >
             <MenuItem button className={classes.menu}>
               <ListItem key="star" role={undefined} dense button>
                 <IconButton aria-label="star">
@@ -77,7 +89,13 @@ class TaskListSidebar extends React.Component<Props, {}> {
               </ListItem>
             </MenuItem>
           </Link>
-          <Link to="today" className={classes.link}>
+          <Link
+            to="today"
+            className={classes.link}
+            onClick={() => {
+              this.props.setRelativePath('/today');
+            }}
+          >
             <MenuItem button className={classes.menu}>
               <ListItem key="today" role={undefined} dense button>
                 <IconButton aria-label="today">
@@ -87,7 +105,13 @@ class TaskListSidebar extends React.Component<Props, {}> {
               </ListItem>
             </MenuItem>
           </Link>
-          <Link to="/week" className={classes.link}>
+          <Link
+            to="/week"
+            className={classes.link}
+            onClick={() => {
+              this.props.setRelativePath('/week');
+            }}
+          >
             <MenuItem button className={classes.menu}>
               <ListItem key="thisweek" role={undefined} dense button>
                 <IconButton aria-label="week">
@@ -103,8 +127,8 @@ class TaskListSidebar extends React.Component<Props, {}> {
           <Route path="/week" />
         </BrowserRouter>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
-          <MenuItem button className={classes.menu}>
-            <ListItem key={value} role={undefined} dense button>
+          <MenuItem button className={classes.menu} key={value}>
+            <ListItem role={undefined} dense button>
               <IconButton aria-label="lists">
                 <ListIcon />
               </IconButton>

@@ -1,0 +1,7 @@
+# frozen_string_literal: true
+
+class Api::V1::Tasks::StarsController < ApplicationController
+  def index
+    render json: Task.stars
+  end
+end

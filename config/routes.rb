@@ -6,6 +6,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       namespace :tasks do
         resources :inboxes, only: :index
+        resources :stars, only: :index
+        resources :today, only: :index
+        resources :week, only: :index
       end
       resources :tasks
     end
