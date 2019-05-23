@@ -8,7 +8,8 @@ import {
   ListItem,
   ListItemText,
   ListItemSecondaryAction,
-  IconButton
+  IconButton,
+  MenuItem
 } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
 import InboxIcon from '@material-ui/icons/Inbox';
@@ -45,36 +46,44 @@ class TaskListSidebar extends React.Component<Props, {}> {
       <List className={classes.root}>
         <BrowserRouter>
           <Link to="/" className={classes.link}>
-            <ListItem key="inbox" role={undefined} dense button>
-              <IconButton aria-label="inbox">
-                <InboxIcon />
-              </IconButton>
-              <ListItemText primary="All Tasks" />
-            </ListItem>
+            <MenuItem button selected>
+              <ListItem key="inbox" role={undefined} dense button>
+                <IconButton aria-label="inbox">
+                  <InboxIcon />
+                </IconButton>
+                <ListItemText primary="All Tasks" />
+              </ListItem>
+            </MenuItem>
           </Link>
           <Link to="/star" className={classes.link}>
-            <ListItem key="star" role={undefined} dense button>
-              <IconButton aria-label="star">
-                <StarIcon />
-              </IconButton>
-              <ListItemText primary="星つき" />
-            </ListItem>
+            <MenuItem button>
+              <ListItem key="star" role={undefined} dense button>
+                <IconButton aria-label="star">
+                  <StarIcon />
+                </IconButton>
+                <ListItemText primary="星つき" />
+              </ListItem>
+            </MenuItem>
           </Link>
           <Link to="today" className={classes.link}>
-            <ListItem key="today" role={undefined} dense button>
-              <IconButton aria-label="today">
-                <TodayIcon />
-              </IconButton>
-              <ListItemText primary="今日" />
-            </ListItem>
+            <MenuItem button>
+              <ListItem key="today" role={undefined} dense button>
+                <IconButton aria-label="today">
+                  <TodayIcon />
+                </IconButton>
+                <ListItemText primary="今日" />
+              </ListItem>
+            </MenuItem>
           </Link>
           <Link to="/week" className={classes.link}>
-            <ListItem key="thisweek" role={undefined} dense button>
-              <IconButton aria-label="week">
-                <WeekIcon />
-              </IconButton>
-              <ListItemText primary="週" />
-            </ListItem>
+            <MenuItem button>
+              <ListItem key="thisweek" role={undefined} dense button>
+                <IconButton aria-label="week">
+                  <WeekIcon />
+                </IconButton>
+                <ListItemText primary="週" />
+              </ListItem>
+            </MenuItem>
           </Link>
           <Route exact path="/" />
           <Route path="/star" />
@@ -82,12 +91,14 @@ class TaskListSidebar extends React.Component<Props, {}> {
           <Route path="/week" />
         </BrowserRouter>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
-          <ListItem key={value} role={undefined} dense button>
-            <IconButton aria-label="lists">
-              <ListIcon />
-            </IconButton>
-            <ListItemText primary={`Line item ${value + 1}`} />
-          </ListItem>
+          <MenuItem button>
+            <ListItem key={value} role={undefined} dense button>
+              <IconButton aria-label="lists">
+                <ListIcon />
+              </IconButton>
+              <ListItemText primary={`Line item ${value + 1}`} />
+            </ListItem>
+          </MenuItem>
         ))}
       </List>
     );
