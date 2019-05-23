@@ -32,6 +32,12 @@ const styles = theme => ({
   },
   link: {
     textDecoration: 'none'
+  },
+  menu: {
+    paddingLeft: '0px'
+  },
+  listitemText: {
+    padding: '0px'
   }
 });
 
@@ -46,42 +52,48 @@ class TaskListSidebar extends React.Component<Props, {}> {
       <List className={classes.root}>
         <BrowserRouter>
           <Link to="/" className={classes.link}>
-            <MenuItem button selected>
+            <MenuItem button selected className={classes.menu}>
               <ListItem key="inbox" role={undefined} dense button>
                 <IconButton aria-label="inbox">
                   <InboxIcon />
                 </IconButton>
-                <ListItemText primary="All Tasks" />
+                <ListItemText
+                  primary="All Tasks"
+                  className={classes.listitemText}
+                />
               </ListItem>
             </MenuItem>
           </Link>
           <Link to="/star" className={classes.link}>
-            <MenuItem button>
+            <MenuItem button className={classes.menu}>
               <ListItem key="star" role={undefined} dense button>
                 <IconButton aria-label="star">
                   <StarIcon />
                 </IconButton>
-                <ListItemText primary="星つき" />
+                <ListItemText
+                  primary="星つき"
+                  className={classes.listitemText}
+                />
               </ListItem>
             </MenuItem>
           </Link>
           <Link to="today" className={classes.link}>
-            <MenuItem button>
+            <MenuItem button className={classes.menu}>
               <ListItem key="today" role={undefined} dense button>
                 <IconButton aria-label="today">
                   <TodayIcon />
                 </IconButton>
-                <ListItemText primary="今日" />
+                <ListItemText primary="今日" className={classes.listitemText} />
               </ListItem>
             </MenuItem>
           </Link>
           <Link to="/week" className={classes.link}>
-            <MenuItem button>
+            <MenuItem button className={classes.menu}>
               <ListItem key="thisweek" role={undefined} dense button>
                 <IconButton aria-label="week">
                   <WeekIcon />
                 </IconButton>
-                <ListItemText primary="週" />
+                <ListItemText primary="週" className={classes.listitemText} />
               </ListItem>
             </MenuItem>
           </Link>
@@ -91,12 +103,15 @@ class TaskListSidebar extends React.Component<Props, {}> {
           <Route path="/week" />
         </BrowserRouter>
         {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(value => (
-          <MenuItem button>
+          <MenuItem button className={classes.menu}>
             <ListItem key={value} role={undefined} dense button>
               <IconButton aria-label="lists">
                 <ListIcon />
               </IconButton>
-              <ListItemText primary={`Line item ${value + 1}`} />
+              <ListItemText
+                primary={`Line item ${value + 1}`}
+                className={classes.listitemText}
+              />
             </ListItem>
           </MenuItem>
         ))}

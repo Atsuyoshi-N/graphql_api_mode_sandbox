@@ -19,8 +19,7 @@ const styles: any = theme => ({
     minWidth: '180px'
   },
   appBar: {
-    backgroundColor: 'transparent'
-    //backgroundColor: '#668963' // #799575
+    backgroundColor: '#668963'
   },
   grow: {
     flexGrow: 1
@@ -89,13 +88,6 @@ class Header extends React.Component<Props> {
       <div className={classes.root}>
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <IconButton
-              className={classes.menuButton}
-              color="inherit"
-              aria-label="Open drawer"
-            >
-              <MenuIcon />
-            </IconButton>
             <Typography
               className={classes.title}
               variant="h6"

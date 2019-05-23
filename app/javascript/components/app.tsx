@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import Header from './header';
+import LeftHeader from './left_header';
 import { Grid } from '@material-ui/core';
 import MainContents from './main_contents';
 import BaseImage from '../images/wunderlist.jpg';
@@ -22,11 +23,11 @@ class App extends React.Component<{}, {}> {
     return (
       <Grid container className={classes.root}>
         <Grid item xs={3}>
-          <Header title="" />
+          <LeftHeader />
         </Grid>
         <Grid item xs={9}>
           <Grid container justify="center">
-            <Header title="Todo App" />
+            <Header title="All tasks" />
           </Grid>
         </Grid>
         <MainContents />
