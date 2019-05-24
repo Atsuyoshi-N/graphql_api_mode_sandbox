@@ -51,9 +51,14 @@ export default class TaskList extends React.Component<Props, State> {
     } else {
       newChecked.splice(currentIdx, 1);
     }
-    this.setState({
-      checked: newChecked
-    });
+    this.setState(
+      {
+        checked: newChecked
+      },
+      () => {
+        this.deleteTask(value);
+      }
+    );
   }
 
   render() {
@@ -72,12 +77,6 @@ export default class TaskList extends React.Component<Props, State> {
         />
         <ListItemText primary={this.props.title} />
         <ListItemText primary={this.props.body} />
-
-        <ListItemSecondaryAction>
-          <a href="#" onClick={() => this.deleteTask(this.props.id)}>
-            削除
-          </a>
-        </ListItemSecondaryAction>
       </ListItem>
     );
   }
