@@ -14,6 +14,7 @@ interface State {
   body: string;
   relativePath: string;
   tasks: object;
+  doneTasks: object;
 }
 
 const styles = theme => ({
@@ -32,15 +33,18 @@ class MainContents extends React.Component<Props, State> {
       title: '',
       body: '',
       relativePath: '/',
-      tasks: []
+      tasks: [],
+      doneTasks: []
     };
     this.getTasks = this.getTasks.bind(this);
+    this.getDoneTasks = this.getDoneTasks.bind(this);
     this.setRelativePath = this.setRelativePath.bind(this);
     this.endPointRelativePath = this.endPointRelativePath.bind(this);
   }
 
   componentDidMount() {
     this.getTasks();
+    this.getDoneTasks();
   }
 
   endPointRelativePath(relativePath: string) {
@@ -78,6 +82,17 @@ class MainContents extends React.Component<Props, State> {
       });
   }
 
+  getDoneTasks() {
+    axios
+      .get('http://localhost:3000/api/v1/tasks/done')
+      .then(response => {
+        this.setState({ doneTasks: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
   setRelativePath(value) {
     this.setState({ relativePath: value }, () => {
       this.getTasks();
@@ -85,7 +100,7 @@ class MainContents extends React.Component<Props, State> {
   }
 
   render() {
-    const { tasks } = this.state;
+    const { tasks, doneTasks } = this.state;
     const { classes }: any = this.props;
     return (
       <Grid container className={classes.mainContent}>
@@ -102,7 +117,9 @@ class MainContents extends React.Component<Props, State> {
           <Form getTasks={this.getTasks} />
           <TaskTable
             tasks={tasks}
+            doneTasks={doneTasks}
             getTasks={this.getTasks}
+            getDoneTasks={this.getDoneTasks}
             relativePath={this.state.relativePath}
             setRelativePath={this.setRelativePath}
           />

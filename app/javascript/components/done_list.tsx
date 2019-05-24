@@ -2,8 +2,8 @@ import * as React from 'react';
 import axios from 'axios';
 import { render } from 'react-dom';
 import {
-  withStyles,
   ListItem,
+  withStyles,
   Checkbox,
   ListItemText,
   ListItemSecondaryAction
@@ -16,7 +16,6 @@ interface Props {
   title: string;
   body: string;
   getTasks: any;
-  getDoneTasks: any;
 }
 
 interface State {
@@ -25,6 +24,7 @@ interface State {
 
 const styles = theme => ({
   aList: {
+    textDecoration: 'line-through',
     backgroundColor: fade(theme.palette.common.white, 0.9),
     margin: '2px 0',
     borderRadius: '3px'
@@ -34,7 +34,7 @@ const styles = theme => ({
   }
 });
 
-class TaskList extends React.Component<Props, State> {
+class DoneList extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
     this.state = {
@@ -49,7 +49,6 @@ class TaskList extends React.Component<Props, State> {
       .then(response => {
         console.log(response);
         this.props.getTasks();
-        this.props.getDoneTasks();
       })
       .catch(error => {
         console.log(error);
@@ -87,7 +86,7 @@ class TaskList extends React.Component<Props, State> {
         className={classes.aList}
       >
         <Checkbox
-          checked={this.state.checked.indexOf(this.props.id) !== -1}
+          checked
           tabIndex={-1}
           disableRipple
           onClick={() => this.handleToggle(this.props.id)}
@@ -98,5 +97,4 @@ class TaskList extends React.Component<Props, State> {
     );
   }
 }
-
-export default withStyles(styles)(TaskList);
+export default withStyles(styles)(DoneList);

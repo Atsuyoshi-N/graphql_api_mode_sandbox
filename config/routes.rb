@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
       namespace :tasks do
+        resources :done, only: :index
         resources :inboxes, only: :index
         resources :stars, only: :index
         resources :today, only: :index
