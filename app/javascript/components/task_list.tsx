@@ -18,9 +18,7 @@ interface Props {
   getTasks: any;
 }
 
-interface State {
-  checked: any;
-}
+interface State {}
 
 const styles = theme => ({
   aList: {
@@ -36,9 +34,6 @@ const styles = theme => ({
 class TaskList extends React.Component<Props, State> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      checked: [0]
-    };
     this.deleteTask = this.deleteTask.bind(this);
   }
 
@@ -54,26 +49,6 @@ class TaskList extends React.Component<Props, State> {
       });
   }
 
-  handleToggle(value) {
-    const { checked }: any = this.state;
-    const currentIdx: number = checked.indexOf(value);
-    const newChecked: any = [...checked];
-
-    if (currentIdx === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIdx, 1);
-    }
-    this.setState(
-      {
-        checked: newChecked
-      },
-      () => {
-        this.deleteTask(value);
-      }
-    );
-  }
-
   render() {
     const { classes }: any = this.props;
     return (
@@ -85,10 +60,10 @@ class TaskList extends React.Component<Props, State> {
         className={classes.aList}
       >
         <Checkbox
-          checked={this.state.checked.indexOf(this.props.id) !== -1}
+          checked={false}
           tabIndex={-1}
           disableRipple
-          onClick={() => this.handleToggle(this.props.id)}
+          onClick={() => this.deleteTask(this.props.id)}
         />
         <ListItemText primary={this.props.title} className={classes.taskText} />
         <ListItemText primary={this.props.body} className={classes.taskText} />

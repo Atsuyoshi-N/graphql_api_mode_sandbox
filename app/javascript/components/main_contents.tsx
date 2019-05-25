@@ -44,8 +44,8 @@ class MainContents extends React.Component<Props, State> {
     this.getTasks();
   }
 
-  getTasks() {
-    axios
+  async getTasks() {
+    await axios
       .get(`http://localhost:3000/api/v1/tasks${this.state.relativePath}`)
       .then(response => {
         //console.log(response.status);
