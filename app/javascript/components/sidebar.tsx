@@ -20,7 +20,6 @@ import ListIcon from '@material-ui/icons/FormatListBulleted';
 interface Props {
   tasks: object;
   relativePath: string;
-  getTasks: any;
   setRelativePath: any;
 }
 

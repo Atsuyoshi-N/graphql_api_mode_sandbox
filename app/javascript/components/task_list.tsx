@@ -16,7 +16,6 @@ interface Props {
   title: string;
   body: string;
   getTasks: any;
-  getDoneTasks: any;
 }
 
 interface State {
@@ -49,7 +48,6 @@ class TaskList extends React.Component<Props, State> {
       .then(response => {
         console.log(response);
         this.props.getTasks();
-        this.props.getDoneTasks();
       })
       .catch(error => {
         console.log(error);

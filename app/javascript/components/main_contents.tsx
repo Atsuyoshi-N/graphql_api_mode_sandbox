@@ -37,18 +37,16 @@ class MainContents extends React.Component<Props, State> {
       doneTasks: []
     };
     this.getTasks = this.getTasks.bind(this);
-    this.getDoneTasks = this.getDoneTasks.bind(this);
     this.setRelativePath = this.setRelativePath.bind(this);
   }
 
   componentDidMount() {
     this.getTasks();
-    this.getDoneTasks();
   }
 
   getTasks() {
     axios
-      .get('http://localhost:3000/api/v1/tasks' + this.state.relativePath)
+      .get(`http://localhost:3000/api/v1/tasks${this.state.relativePath}`)
       .then(response => {
         //console.log(response.status);
         //console.log(response.data);
@@ -57,11 +55,8 @@ class MainContents extends React.Component<Props, State> {
       .catch(error => {
         console.log(error);
       });
-  }
-
-  getDoneTasks() {
     axios
-      .get('http://localhost:3000/api/v1/tasks/done')
+      .get(`http://localhost:3000/api/v1/tasks/done${this.state.relativePath}`)
       .then(response => {
         this.setState({ doneTasks: response.data });
       })
@@ -96,7 +91,6 @@ class MainContents extends React.Component<Props, State> {
             tasks={tasks}
             doneTasks={doneTasks}
             getTasks={this.getTasks}
-            getDoneTasks={this.getDoneTasks}
             relativePath={this.state.relativePath}
             setRelativePath={this.setRelativePath}
           />

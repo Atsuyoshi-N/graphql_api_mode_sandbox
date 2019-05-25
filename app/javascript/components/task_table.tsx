@@ -10,7 +10,6 @@ interface Props {
   doneTasks: object;
   relativePath: string;
   getTasks: any;
-  getDoneTasks: any;
   setRelativePath: any;
 }
 
@@ -38,7 +37,7 @@ class TaskTable extends React.Component<Props, State> {
   }
 
   render() {
-    const { tasks, doneTasks, getTasks, getDoneTasks }: any = this.props;
+    const { tasks, doneTasks, getTasks }: any = this.props;
     console.log(doneTasks);
     const { classes }: any = this.props;
     console.log(`relativePath is: ${this.props.relativePath}`);
@@ -54,7 +53,6 @@ class TaskTable extends React.Component<Props, State> {
                   title={task.title}
                   body={task.body}
                   getTasks={getTasks}
-                  getDoneTasks={getDoneTasks}
                 />
               );
             }.bind(this)
@@ -70,7 +68,6 @@ class TaskTable extends React.Component<Props, State> {
                   title={task.title}
                   body={task.body}
                   getTasks={getTasks}
-                  getDoneTasks={getDoneTasks}
                 />
               );
             }.bind(this)
