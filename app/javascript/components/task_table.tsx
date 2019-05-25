@@ -70,6 +70,7 @@ class TaskTable extends React.Component<Props, State> {
                   title={task.title}
                   body={task.body}
                   getTasks={getTasks}
+                  getDoneTasks={getDoneTasks}
                 />
               );
             }.bind(this)

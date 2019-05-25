@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class Api::V1::TasksController < ApplicationController
-  before_action :set_task, only: %i[show update destroy]
+  before_action :set_task, only: %i[show destroy]
+  before_action :set_deleted_task, only: %i[update]
 
   def index
     render json: Task.all.latest_ordered
@@ -29,10 +30,14 @@ class Api::V1::TasksController < ApplicationController
   private
 
   def task_params
-    params.permit(:title, :body)
+    params.permit(:title, :body, :deleted_at)
   end
 
   def set_task
     @task = Task.find(params[:id])
+  end
+
+  def set_deleted_task
+    @task = Task.unscoped.find(params[:id])
   end
 end

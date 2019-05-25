@@ -16,6 +16,7 @@ interface Props {
   title: string;
   body: string;
   getTasks: any;
+  getDoneTasks: any;
 }
 
 interface State {
@@ -41,6 +42,7 @@ class DoneList extends React.Component<Props, State> {
       checked: [0]
     };
     this.deleteTask = this.deleteTask.bind(this);
+    this.restoreTask = this.restoreTask.bind(this);
   }
 
   deleteTask(id) {
@@ -49,6 +51,21 @@ class DoneList extends React.Component<Props, State> {
       .then(response => {
         console.log(response);
         this.props.getTasks();
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+
+  restoreTask(id) {
+    axios
+      .patch(`http://localhost:3000/api/v1/tasks/${this.props.id}`, {
+        deleted_at: null
+      })
+      .then(response => {
+        console.log(response);
+        this.props.getTasks();
+        this.props.getDoneTasks();
       })
       .catch(error => {
         console.log(error);
@@ -70,7 +87,7 @@ class DoneList extends React.Component<Props, State> {
         checked: newChecked
       },
       () => {
-        this.deleteTask(value);
+        this.restoreTask(value);
       }
     );
   }
