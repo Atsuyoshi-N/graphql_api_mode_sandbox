@@ -73,7 +73,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
             </MenuItem>
           </Link>
           <Link
-            to="/star"
+            to="/stars"
             className={classes.link}
             onClick={() => this.props.setRelativePath('/stars')}
           >
@@ -122,7 +122,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
             </MenuItem>
           </Link>
           <Route exact path="/" />
-          <Route path="/star" />
+          <Route path="/stars" />
           <Route path="/today" />
           <Route path="/week" />
         </BrowserRouter>

@@ -39,7 +39,6 @@ class MainContents extends React.Component<Props, State> {
     this.getTasks = this.getTasks.bind(this);
     this.getDoneTasks = this.getDoneTasks.bind(this);
     this.setRelativePath = this.setRelativePath.bind(this);
-    this.endPointRelativePath = this.endPointRelativePath.bind(this);
   }
 
   componentDidMount() {
@@ -47,31 +46,9 @@ class MainContents extends React.Component<Props, State> {
     this.getDoneTasks();
   }
 
-  endPointRelativePath(relativePath: string) {
-    switch (relativePath) {
-      case '/':
-        return '/inboxes';
-        break;
-      case '/stars':
-        return '/stars';
-        break;
-      case '/today':
-        return '/today';
-        break;
-      case '/week':
-        return '/week';
-        break;
-      default:
-        return '/';
-        break;
-    }
-  }
-
   getTasks() {
-    const BASEURL = 'http://localhost:3000/api/v1/tasks';
-    const url = BASEURL + this.endPointRelativePath(this.state.relativePath);
     axios
-      .get(url)
+      .get('http://localhost:3000/api/v1/tasks' + this.state.relativePath)
       .then(response => {
         //console.log(response.status);
         //console.log(response.data);
