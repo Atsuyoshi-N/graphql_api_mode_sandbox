@@ -4,10 +4,6 @@ class Api::V1::TasksController < ApplicationController
   before_action :set_task, only: %i[show destroy]
   before_action :set_deleted_task, only: %i[update]
 
-  def index
-    render json: Task.all.latest_ordered
-  end
-
   def create
     @task = Task.new(task_params)
     render json: @task if @task.save
