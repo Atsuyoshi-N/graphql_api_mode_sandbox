@@ -79,7 +79,6 @@ class MainContents extends React.Component<Props, State> {
         <Grid item xs={3}>
           <TaskListSidebar
             tasks={tasks}
-            getTasks={this.getTasks}
             relativePath={this.state.relativePath}
             setRelativePath={this.setRelativePath}
           />

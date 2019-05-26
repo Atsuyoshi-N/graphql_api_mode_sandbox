@@ -1,6 +1,4 @@
 import * as React from 'react';
-import axios from 'axios';
-import * as ReactDOM from 'react-dom';
 import TaskList from './task_list';
 import DoneList from './done_list';
 import { Grid, List, withStyles } from '@material-ui/core';
@@ -9,8 +7,8 @@ interface Props {
   tasks: object;
   doneTasks: object;
   relativePath: string;
-  getTasks: any;
-  setRelativePath: any;
+  getTasks: void;
+  setRelativePath: (value: string) => void;
 }
 
 interface State {
@@ -44,34 +42,30 @@ class TaskTable extends React.Component<Props, State> {
     return (
       <Grid container className={classes.root}>
         <List className={classes.lists}>
-          {tasks.map(
-            function(task: any, index: number) {
-              return (
-                <TaskList
-                  key={task.id}
-                  id={task.id}
-                  title={task.title}
-                  body={task.body}
-                  getTasks={getTasks}
-                />
-              );
-            }.bind(this)
-          )}
+          {tasks.map(function(task: any, index: number) {
+            return (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                body={task.body}
+                getTasks={getTasks}
+              />
+            );
+          })}
         </List>
         <List className={classes.lists}>
-          {doneTasks.map(
-            function(task: any, index: number) {
-              return (
-                <DoneList
-                  key={task.id}
-                  id={task.id}
-                  title={task.title}
-                  body={task.body}
-                  getTasks={getTasks}
-                />
-              );
-            }.bind(this)
-          )}
+          {doneTasks.map(function(task: any, index: number) {
+            return (
+              <DoneList
+                key={task.id}
+                id={task.id}
+                title={task.title}
+                body={task.body}
+                getTasks={getTasks}
+              />
+            );
+          })}
         </List>
       </Grid>
     );

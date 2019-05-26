@@ -1,12 +1,10 @@
 import * as React from 'react';
 import axios from 'axios';
-import { render } from 'react-dom';
 import {
   withStyles,
   ListItem,
   Checkbox,
-  ListItemText,
-  ListItemSecondaryAction
+  ListItemText
 } from '@material-ui/core';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 
@@ -32,7 +30,7 @@ const styles = theme => ({
 });
 
 class TaskList extends React.Component<Props, State> {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
     this.deleteTask = this.deleteTask.bind(this);
   }

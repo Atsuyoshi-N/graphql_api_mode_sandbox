@@ -1,13 +1,10 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import TaskTable from './task_table';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   IconButton,
   MenuItem
 } from '@material-ui/core';
@@ -20,7 +17,7 @@ import ListIcon from '@material-ui/icons/FormatListBulleted';
 interface Props {
   tasks: object;
   relativePath: string;
-  setRelativePath: any;
+  setRelativePath: (value: string) => void;
 }
 
 const styles = theme => ({

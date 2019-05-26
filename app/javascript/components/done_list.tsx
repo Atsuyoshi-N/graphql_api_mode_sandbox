@@ -18,9 +18,7 @@ interface Props {
   getTasks: any;
 }
 
-interface State {
-  checked: any;
-}
+interface State {}
 
 const styles = theme => ({
   aList: {
@@ -35,11 +33,8 @@ const styles = theme => ({
 });
 
 class DoneList extends React.Component<Props, State> {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
-    this.state = {
-      checked: [0]
-    };
     this.restoreTask = this.restoreTask.bind(this);
   }
 
