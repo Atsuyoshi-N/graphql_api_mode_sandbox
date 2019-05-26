@@ -2,6 +2,6 @@
 
 class Api::V1::Tasks::InboxesController < ApplicationController
   def index
-    render json: Task.latest_ordered
+    render json: Task.latest_ordered, status: :ok
   end
 end

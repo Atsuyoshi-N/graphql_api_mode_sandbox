@@ -16,8 +16,8 @@ FactoryBot.define do
     deadline { Date.today.end_of_day }
   end
 
-  factory :thisweek_deadlined_task, class: Task do
-    title { 'thisweek deadlined task' }
+  factory :nextweek_deadlined_task, class: Task do
+    title { 'nextweek deadlined task' }
     deadline { 6.days.after.end_of_day }
   end
 
