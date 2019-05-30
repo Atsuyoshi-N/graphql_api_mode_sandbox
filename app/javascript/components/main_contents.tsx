@@ -14,6 +14,7 @@ interface State {
   body: string;
   relativePath: string;
   tasks: object;
+  doneTasks: object;
 }
 
 const styles = theme => ({
@@ -32,46 +33,32 @@ class MainContents extends React.Component<Props, State> {
       title: '',
       body: '',
       relativePath: '/',
-      tasks: []
+      tasks: [],
+      doneTasks: []
     };
     this.getTasks = this.getTasks.bind(this);
     this.setRelativePath = this.setRelativePath.bind(this);
-    this.endPointRelativePath = this.endPointRelativePath.bind(this);
   }
 
   componentDidMount() {
     this.getTasks();
   }
 
-  endPointRelativePath(relativePath: string) {
-    switch (relativePath) {
-      case '/':
-        return '/inboxes';
-        break;
-      case '/stars':
-        return '/stars';
-        break;
-      case '/today':
-        return '/today';
-        break;
-      case '/week':
-        return '/week';
-        break;
-      default:
-        return '/';
-        break;
-    }
-  }
-
-  getTasks() {
-    const BASEURL = 'http://localhost:3000/api/v1/tasks';
-    const url = BASEURL + this.endPointRelativePath(this.state.relativePath);
-    axios
-      .get(url)
+  async getTasks() {
+    await axios
+      .get(`http://localhost:3000/api/v1/tasks${this.state.relativePath}`)
       .then(response => {
         //console.log(response.status);
         //console.log(response.data);
         this.setState({ tasks: response.data });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    axios
+      .get(`http://localhost:3000/api/v1/tasks/done${this.state.relativePath}`)
+      .then(response => {
+        this.setState({ doneTasks: response.data });
       })
       .catch(error => {
         console.log(error);
@@ -85,14 +72,13 @@ class MainContents extends React.Component<Props, State> {
   }
 
   render() {
-    const { tasks } = this.state;
+    const { tasks, doneTasks } = this.state;
     const { classes }: any = this.props;
     return (
       <Grid container className={classes.mainContent}>
         <Grid item xs={3}>
           <TaskListSidebar
             tasks={tasks}
-            getTasks={this.getTasks}
             relativePath={this.state.relativePath}
             setRelativePath={this.setRelativePath}
           />
@@ -102,6 +88,7 @@ class MainContents extends React.Component<Props, State> {
           <Form getTasks={this.getTasks} />
           <TaskTable
             tasks={tasks}
+            doneTasks={doneTasks}
             getTasks={this.getTasks}
             relativePath={this.state.relativePath}
             setRelativePath={this.setRelativePath}

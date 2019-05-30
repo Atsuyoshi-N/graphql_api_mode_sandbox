@@ -18,7 +18,9 @@ ActiveRecord::Schema.define(version: 20_190_519_034_225) do
     t.text 'body'
     t.datetime 'deadline'
     t.boolean 'is_starred', default: false, null: false
+    t.datetime 'deleted_at'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.index ['deleted_at'], name: 'index_tasks_on_deleted_at'
   end
 end

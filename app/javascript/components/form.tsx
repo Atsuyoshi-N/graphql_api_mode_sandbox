@@ -37,7 +37,7 @@ const styles: any = {
 };
 
 class Form extends React.Component<Props, State> {
-  constructor(props: any) {
+  constructor(props) {
     super(props);
 
     this.state = {
@@ -55,7 +55,7 @@ class Form extends React.Component<Props, State> {
   }
 
   createTask(event) {
-    const data: any = { title: this.state.title, body: this.state.body };
+    const data: object = { title: this.state.title, body: this.state.body };
     axios
       .post('http://localhost:3000/api/v1/tasks', data)
       .then(response => {

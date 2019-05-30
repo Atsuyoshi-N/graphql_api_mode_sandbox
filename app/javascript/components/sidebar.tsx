@@ -1,13 +1,10 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import TaskTable from './task_table';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import {
   List,
   ListItem,
   ListItemText,
-  ListItemSecondaryAction,
   IconButton,
   MenuItem
 } from '@material-ui/core';
@@ -20,8 +17,7 @@ import ListIcon from '@material-ui/icons/FormatListBulleted';
 interface Props {
   tasks: object;
   relativePath: string;
-  getTasks: any;
-  setRelativePath: any;
+  setRelativePath: (value: string) => void;
 }
 
 const styles = theme => ({
@@ -73,7 +69,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
             </MenuItem>
           </Link>
           <Link
-            to="/star"
+            to="/stars"
             className={classes.link}
             onClick={() => this.props.setRelativePath('/stars')}
           >
@@ -122,7 +118,7 @@ class TaskListSidebar extends React.Component<Props, {}> {
             </MenuItem>
           </Link>
           <Route exact path="/" />
-          <Route path="/star" />
+          <Route path="/stars" />
           <Route path="/today" />
           <Route path="/week" />
         </BrowserRouter>

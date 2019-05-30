@@ -1,5 +1,4 @@
 import * as React from 'react';
-import Typography from '@material-ui/core/Typography';
 import {
   AppBar,
   Toolbar,
@@ -20,7 +19,8 @@ const styles: any = theme => ({
     width: '100%'
   },
   toolbar: {
-    width: '100%'
+    width: '100%',
+    padding: 0
   },
   searchIcon: {
     width: theme.spacing.unit * 9,

@@ -5,12 +5,22 @@ Rails.application.routes.draw do
   namespace :api, format: 'json' do
     namespace :v1 do
       namespace :tasks do
-        resources :inboxes, only: :index
+        namespace :done do
+          root 'inboxes#index'
+          resources :week, only: :index
+          resources :stars, only: :index
+          resources :today, only: :index
+          resources :inboxes, only: :index
+        end
+
+        root 'inboxes#index'
+        resources :week, only: :index
         resources :stars, only: :index
         resources :today, only: :index
-        resources :week, only: :index
+        resources :inboxes, only: :index
       end
-      resources :tasks
+
+      resources :tasks, except: :index
     end
   end
 

@@ -9,7 +9,7 @@ describe 'HomeController', type: :request do
     end
 
     it 'returns 200 OK' do
-      expect(response.status).to eq 200
+      expect(response).to have_http_status(:ok)
     end
   end
 end

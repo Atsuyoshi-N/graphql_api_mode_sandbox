@@ -7,7 +7,7 @@ class CreateTasks < ActiveRecord::Migration[5.2]
       t.text :body
       t.datetime :deadline
       t.boolean :is_starred, null: false, default: false
-
+      t.datetime :deleted_at, index: true
       t.timestamps
     end
   end
