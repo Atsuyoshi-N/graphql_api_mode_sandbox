@@ -13,3 +13,8 @@
 Rails5.2.3
 MySQL 5.7.25
 
+## DEMO
+https://github.com/Atsuyoshi-N/graphql_api_mode_sandbox/pull/9#issuecomment-495319703
+
+## Notion
+Impremented REST API mode, but not impremented GraphQL...(TBD)
